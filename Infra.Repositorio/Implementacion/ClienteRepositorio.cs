@@ -12,9 +12,9 @@ namespace Infra.Repositorio.Implementacion
     public class ClienteRepositorio : IClienteRepositorio
     {
         readonly TestContext _cn;
-        public ClienteRepositorio(TestContext cn)
+        public ClienteRepositorio(string cn)
         {
-            _cn = cn;
+            _cn = new TestContext(cn);
         }
 
         public void add(Cliente entity)

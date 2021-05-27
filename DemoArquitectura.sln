@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Infraestructura", "3. In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Dominio", "4. Dominio", "{D4213646-3B93-492C-A580-ECDA8C8F596C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.WebAPI", "UI.WebAPI\UI.WebAPI.csproj", "{23E705D5-8E3E-4AA1-946B-44DF88097EF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.WebAPI", "UI.WebAPI\UI.WebAPI.csproj", "{23E705D5-8E3E-4AA1-946B-44DF88097EF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio.Servicio", "Negocio.Servicio\Negocio.Servicio.csproj", "{6E7D124E-0098-4F7E-A795-EFE6FC35DD49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Negocio.Servicio", "Negocio.Servicio\Negocio.Servicio.csproj", "{6E7D124E-0098-4F7E-A795-EFE6FC35DD49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Repositorio", "Infra.Repositorio\Infra.Repositorio.csproj", "{50A8C104-11DC-42BD-9A02-D5B5AD0785AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Repositorio", "Infra.Repositorio\Infra.Repositorio.csproj", "{50A8C104-11DC-42BD-9A02-D5B5AD0785AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.AccesoDatos", "Infra.AccesoDatos\Infra.AccesoDatos.csproj", "{2CB9FEF3-C5F4-41F4-BC7E-D311906DA300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.AccesoDatos", "Infra.AccesoDatos\Infra.AccesoDatos.csproj", "{2CB9FEF3-C5F4-41F4-BC7E-D311906DA300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Entidades", "Dominio.Entidades\Dominio.Entidades.csproj", "{8D82CF0F-269A-4FEF-966D-026653D1B9BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio.Entidades", "Dominio.Entidades\Dominio.Entidades.csproj", "{8D82CF0F-269A-4FEF-966D-026653D1B9BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
