@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Dominio.Entidades.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Negocio.Servicio;
 using Negocio.Servicio.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,25 +14,19 @@ namespace UI.WebAPI.Controllers
 {
     [Route("producto")]
     [ApiController]
-    public class ProductoController : ControllerBase
+    public class ProductoController : BaseController
     {
         //construyo negocio y instancio mappe
-
-        private readonly IMapper _mapper;
-        private readonly IProductoServicio _productoServicio;
-
-        public ProductoController(IMapper mapper, IProductoServicio productoServicio)
+        public ProductoController(IMapper mapper, IUnitOfWork unitOfWork) : base(unitOfWork, mapper)
         {
-            _mapper = mapper;
-            _productoServicio = productoServicio;
         }
         // GET: api/<ProductoController>
         [HttpGet]
         [Route("ListaProductos")]
         public IActionResult ListaProductos()
         {
-            
-            var Lista = _mapper.Map<List<ProductoViewModel>>(_productoServicio.ListarProductos());
+
+            var Lista = _mapper.Map<List<ProductoViewModel>>(_unitOfWork.producto.ListarProductos());
 
             return Ok(Lista);
         }

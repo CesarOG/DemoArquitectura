@@ -14,14 +14,12 @@ namespace Negocio.Servicio.Implementacion
     {
         //construto la interface  del repositorio
 
-        IProductoRepositorio _productoRepositorio;
+        public IProductoRepositorio _productoRepositorio { get; private set; }
 
         public ProductoServicio(string cn)
         {
             _productoRepositorio = new ProductoRepositorio(cn);
-
         }
-
 
         public void add(Producto entity)
         {
@@ -46,6 +44,11 @@ namespace Negocio.Servicio.Implementacion
         public void update(Producto entity)
         {
             throw new NotImplementedException();
+        }
+
+        public Producto findById(int id)
+        {
+            return _productoRepositorio.findById(id);
         }
     }
 

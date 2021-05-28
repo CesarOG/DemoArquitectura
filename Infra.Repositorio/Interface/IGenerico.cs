@@ -8,7 +8,9 @@ namespace Infra.Repositorio.Interface
     {
         void add(T entity);
         void update(T entity);
-        void delete(Guid Id);
+        void delete(int id);
         IEnumerable<T> Get();
+        T findById(int id);
+        void CreateRange(IEnumerable<T> entities);
     }
 }

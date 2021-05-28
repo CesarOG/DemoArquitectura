@@ -9,43 +9,15 @@ using System.Text;
 
 namespace Infra.Repositorio.Implementacion
 {
-    public class ClienteRepositorio : IClienteRepositorio
+    public class ClienteRepositorio : Generico<Cliente>, IClienteRepositorio
     {
-        readonly TestContext _cn;
-        public ClienteRepositorio(string cn)
+        public ClienteRepositorio(string cn) : base(cn)
         {
-            _cn = new TestContext(cn);
+            //_cn = new TestContext(cn);
         }
-
-        public void add(Cliente entity)
-        {
-            _cn.Add(entity);
-            _cn.SaveChanges();
-        }
-
-        public void delete(Guid Id)
-        {
-            var client = _cn.Cliente.Find(Id);
-            _cn.Remove(client);
-            _cn.SaveChanges();
-        }
-
-        public IEnumerable<Cliente> Get()
-        {
-            return _cn.Cliente;
-        }
-
         public IEnumerable<Cliente> ListarClientesMayorEdad()
         {
             return _cn.Cliente.Where(x => x.Edad >= 18).ToList();
-        }
-
-        public void update(Cliente entity)
-        {
-            var client = _cn.Cliente.Find(entity.Id);
-            _cn.Update(client);
-            _cn.Entry(entity).State = EntityState.Modified;
-            _cn.SaveChanges();
         }
     }
 }

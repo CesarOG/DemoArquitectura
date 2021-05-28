@@ -5,13 +5,6 @@ namespace Infra.AccesoDatos.OrigenDato
 {
     public class TestContext : DbContext
     {
-        //public TestContext()
-        //{
-
-        //}
-        //public TestContext(DbContextOptions<TestContext> options) : base(options)
-        //{
-        //}
         private readonly string _connectionString;
 
         public TestContext(string connectionString)
@@ -21,7 +14,10 @@ namespace Infra.AccesoDatos.OrigenDato
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(_connectionString);                
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

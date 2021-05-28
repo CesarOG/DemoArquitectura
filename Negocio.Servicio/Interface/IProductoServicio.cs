@@ -12,6 +12,7 @@ namespace Negocio.Servicio.Interface
         void update(Producto entity);
         void delete(Guid Id);
         IEnumerable<Producto> Get();
+        Producto findById(int id);
         IEnumerable<Producto> ListarProductos();
 
     }

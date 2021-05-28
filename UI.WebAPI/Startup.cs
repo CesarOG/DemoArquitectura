@@ -18,6 +18,7 @@ using Negocio.Servicio.Implementacion;
 using Negocio.Servicio.Interface;
 
 using Microsoft.OpenApi.Models;
+using Negocio.Servicio;
 
 namespace UI.WebAPI
 {
@@ -33,7 +34,7 @@ namespace UI.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddSingleton<IUnitOfWork>(opt => new UnitOfWork(Configuration.GetConnectionString("DemoConnection")));
 
             services.AddControllers();
 
@@ -45,18 +46,7 @@ namespace UI.WebAPI
               });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddMvc();
-            services.AddSingleton<IClienteServicio>(option => new ClienteServicio(Configuration.GetConnectionString("DemoConnection")));
-            services.AddSingleton<IProductoServicio>(option => new ProductoServicio(Configuration.GetConnectionString("DemoConnection")));
-            //services.AddScoped<IClienteServicio, ClienteServicio>();
-            //services.AddEntityFrameworkSqlServer();
-            //services.AddDbContextPool<TestContext>(options =>
-            //                options.UseSqlServer(Configuration.GetConnectionString("DemoConnection")));
-            //services.AddDbContextPool<TestContext>((serviceProvider, optionsBuilder) =>
-            //{
-            //    optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DemoConnection"));
-            //    optionsBuilder.UseInternalServiceProvider(serviceProvider);
-            //});
+            services.AddMvc();         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

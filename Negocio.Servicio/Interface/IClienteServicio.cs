@@ -12,6 +12,7 @@ namespace Negocio.Servicio.Interface
         void update(Cliente entity);
         void delete(Guid Id);
         IEnumerable<Cliente> Get();
+        Cliente findById(int id);
         IEnumerable<Cliente> ListarClientesMayorEdad();
     }
 }

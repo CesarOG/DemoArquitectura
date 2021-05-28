@@ -12,14 +12,14 @@ namespace Negocio.Servicio.Implementacion
 {
     public class ClienteServicio : IClienteServicio
     {
-        IClienteRepositorio _clienteRepositorio;
+        public IClienteRepositorio _clienteRepositorio { get; private set; }
         public ClienteServicio(string cnString)
         {
             _clienteRepositorio = new ClienteRepositorio(cnString);
         }
         public void add(Cliente entity)
         {
-            throw new NotImplementedException();
+            _clienteRepositorio.add(entity);
         }
 
         public void delete(Guid Id)
@@ -34,12 +34,17 @@ namespace Negocio.Servicio.Implementacion
 
         public IEnumerable<Cliente> ListarClientesMayorEdad()
         {
-            throw new NotImplementedException();
+            return _clienteRepositorio.ListarClientesMayorEdad();
         }
 
         public void update(Cliente entity)
         {
             throw new NotImplementedException();
+        }
+
+        public Cliente findById(int id)
+        {
+            return _clienteRepositorio.findById(id);
         }
     }
 }
