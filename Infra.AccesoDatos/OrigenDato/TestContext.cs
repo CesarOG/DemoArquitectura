@@ -1,8 +1,5 @@
 ﻿using Dominio.Entidades.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infra.AccesoDatos.OrigenDato
 {
@@ -30,6 +27,7 @@ namespace Infra.AccesoDatos.OrigenDato
         {
         }
         public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Producto> Producto { get; set; }
 
     }
 }

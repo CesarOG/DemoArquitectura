@@ -17,6 +17,8 @@ using Microsoft.Extensions.Logging;
 using Negocio.Servicio.Implementacion;
 using Negocio.Servicio.Interface;
 
+using Microsoft.OpenApi.Models;
+
 namespace UI.WebAPI
 {
     public class Startup
@@ -35,6 +37,8 @@ namespace UI.WebAPI
 
             services.AddControllers();
 
+            AddSwagger(services);
+
             var mapperConfig = new MapperConfiguration(m =>
               {
                   m.AddProfile(new MappingProfile());
@@ -43,6 +47,7 @@ namespace UI.WebAPI
             services.AddSingleton(mapper);
             services.AddMvc();
             services.AddSingleton<IClienteServicio>(option => new ClienteServicio(Configuration.GetConnectionString("DemoConnection")));
+            services.AddSingleton<IProductoServicio>(option => new ProductoServicio(Configuration.GetConnectionString("DemoConnection")));
             //services.AddScoped<IClienteServicio, ClienteServicio>();
             //services.AddEntityFrameworkSqlServer();
             //services.AddDbContextPool<TestContext>(options =>
@@ -71,6 +76,33 @@ namespace UI.WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Foo API V1");
+            });
+        }
+
+        private void AddSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $"Foo {groupName}",
+                    Version = groupName,
+                    Description = "Foo API",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Foo Company",
+                        Email = string.Empty,
+                        Url = new Uri("https://foo.com/"),
+                    }
+                });
             });
         }
     }
