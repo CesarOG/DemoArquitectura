@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Dominio.Entidades.Model;
 using Dominio.Entidades.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Negocio.Servicio;
@@ -14,11 +16,13 @@ using System.Threading.Tasks;
 namespace UI.WebAPI.Controllers
 {
     [Route("Cliente")]
+    [EnableCors("MyPolicy")]
+    [Authorize]
     [ApiController]
     public class ClienteController : BaseController
-    {           
+    {
         public ClienteController(IMapper mapper, IUnitOfWork unitOfWork) : base(unitOfWork, mapper)
-        {            
+        {
         }
 
         [HttpGet]

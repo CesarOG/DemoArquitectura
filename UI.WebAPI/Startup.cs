@@ -35,7 +35,8 @@ namespace UI.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IUnitOfWork>(opt => new UnitOfWork(Configuration.GetConnectionString("DemoConnection")));
-
+            services.AddCors(opt => opt.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));//CORS
+            services.AddTokenAuthentication(Configuration);//JWT
             services.AddControllers();
 
             AddSwagger(services);
@@ -46,7 +47,7 @@ namespace UI.WebAPI
               });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddMvc();         
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +61,8 @@ namespace UI.WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors();//CORS
+            app.UseAuthentication();//Jwt
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
