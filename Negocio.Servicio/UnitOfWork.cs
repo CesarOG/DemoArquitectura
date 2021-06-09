@@ -1,5 +1,7 @@
 ﻿using Infra.Repositorio.Implementacion;
 using Infra.Repositorio.Interface;
+using Negocio.Servicio.Implementacion;
+using Negocio.Servicio.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,12 +12,11 @@ namespace Negocio.Servicio
     {
         public UnitOfWork(string cnString)
         {
-            cliente = new ClienteRepositorio(cnString);
-            producto = new ProductoRepositorio(cnString);
-            producto2 = new ProductoRepositorio(cnString);
+            cliente = new ClienteServicio(cnString);
+            producto = new ProductoServicio(cnString);
         }
-        public IClienteRepositorio cliente { get; private set; }
-        public IProductoRepositorio producto { get; private set; }
-        public IProductoRepositorio producto2 { get; private set; }
+        public IClienteServicio cliente { get; private set; }
+        public IProductoServicio producto { get; private set; }
+
     }
 }
