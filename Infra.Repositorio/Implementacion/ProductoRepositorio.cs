@@ -13,16 +13,15 @@ namespace Infra.Repositorio.Implementacion
     public class ProductoRepositorio : Generico<Producto>, IProductoRepositorio
     {
         //constructor de conexion
-        public ProductoRepositorio(string cn) : base(cn)
-        {
-            //_cn = new TestContext(cn);
+        public ProductoRepositorio(TestContext context) : base(context)
+        {            
         }
 
         //metodo personalizado
 
         public IEnumerable<Producto> ListarProductos()
         {
-            return _cn.Producto;
+            return _context.Producto;
         }
 
 

@@ -16,9 +16,9 @@ namespace Negocio.Servicio.Implementacion
 
         public IProductoRepositorio _productoRepositorio { get; private set; }
 
-        public ProductoServicio(string cn)
+        public ProductoServicio(TestContext context)
         {
-            _productoRepositorio = new ProductoRepositorio(cn);
+            _productoRepositorio = new ProductoRepositorio(context);
         }
 
         public void add(Producto entity)

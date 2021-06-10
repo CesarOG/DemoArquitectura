@@ -13,9 +13,9 @@ namespace Negocio.Servicio.Implementacion
     public class ClienteServicio : IClienteServicio
     {
         public IClienteRepositorio _clienteRepositorio { get; private set; }
-        public ClienteServicio(string cnString)
+        public ClienteServicio(TestContext context)
         {
-            _clienteRepositorio = new ClienteRepositorio(cnString);
+            _clienteRepositorio = new ClienteRepositorio(context);
         }
         public void add(Cliente entity)
         {

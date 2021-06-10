@@ -9,17 +9,17 @@ namespace Infra.Repositorio.Implementacion
 {
     public class Generico<T> : IGenerico<T> where T : class
     {
-        protected TestContext _cn;
+        protected TestContext _context;
         private readonly DbSet<T> dbSet;
-        public Generico(string cn)
+        public Generico(TestContext context)
         {
-            this._cn = new TestContext(cn);
-            this.dbSet = _cn.Set<T>();
+            _context = context;
+            this.dbSet = _context.Set<T>();
         }
         public void add(T entity)
         {
             dbSet.Add(entity);
-            _cn.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public void delete(int id)
@@ -28,7 +28,7 @@ namespace Infra.Repositorio.Implementacion
             if (entity != null)
             {
                 dbSet.Remove(entity);
-                _cn.SaveChanges();
+                //_context.SaveChanges();
             }
         }
 
@@ -40,8 +40,8 @@ namespace Infra.Repositorio.Implementacion
         public void update(T entity)
         {
             dbSet.Attach(entity);
-            _cn.Entry(entity).State = EntityState.Modified;
-            _cn.SaveChanges();
+            _context.Entry(entity).State = EntityState.Modified;
+            //_context.SaveChanges();
         }
 
         public T findById(int id)
@@ -55,7 +55,7 @@ namespace Infra.Repositorio.Implementacion
             {
                 dbSet.Add(entity);
             }
-            _cn.SaveChanges();
+            //_context.SaveChanges();
         }
     }
 }

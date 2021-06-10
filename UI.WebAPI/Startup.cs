@@ -34,7 +34,9 @@ namespace UI.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IUnitOfWork>(opt => new UnitOfWork(Configuration.GetConnectionString("DemoConnection")));
+            //services.AddSingleton<IUnitOfWork>(opt => new UnitOfWork(Configuration.GetConnectionString("DemoConnection")));
+            services.AddDbContext<TestContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DemoConnection")));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddCors(opt => opt.AddPolicy("MyPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));//CORS
             services.AddTokenAuthentication(Configuration);//JWT
             services.AddControllers();

@@ -4,20 +4,12 @@ using Microsoft.EntityFrameworkCore;
 namespace Infra.AccesoDatos.OrigenDato
 {
     public class TestContext : DbContext
-    {
-        private readonly string _connectionString;
-
-        public TestContext(string connectionString)
+    {     
+        public TestContext(DbContextOptions<TestContext> options) : base(options)
         {
-            _connectionString = connectionString;
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(_connectionString);                
-            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -17,7 +17,7 @@ namespace UI.WebAPI.Controllers
 {
     [Route("Cliente")]
     [EnableCors("MyPolicy")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class ClienteController : BaseController
     {
@@ -56,7 +56,29 @@ namespace UI.WebAPI.Controllers
         public IActionResult RegistrarCliente(ClienteViewModel clienteViewModel)
         {
             var cliente = _mapper.Map<Cliente>(clienteViewModel);
-            _unitOfWork.cliente.add(cliente);
+
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                _unitOfWork.cliente.add(cliente);
+                _unitOfWork.SaveChanges();
+
+
+
+
+                _unitOfWork.cliente.add(cliente);
+                _unitOfWork.SaveChanges();
+
+                _unitOfWork.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                _unitOfWork.RollbackTransaction();
+
+                throw;
+            }
+        
+
 
             return Ok();
         }
